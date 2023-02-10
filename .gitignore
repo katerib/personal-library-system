@@ -2,3 +2,4 @@
 /venv/
 .env
 /testing-files/
+key.py
