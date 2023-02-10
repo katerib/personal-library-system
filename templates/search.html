@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <div class="stars">
+         <div class="twinkling">
+                <div class="card-home">
+                    <div class="card-header">
+                        <h2 id="header-text" class="text-center">Search</h2>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+    <div class="search-page mt-2">
+        <br>
+        <p class="search">
+            Looking for a specific book? Enter the book title or author to get started!
+        </p>
+        <br>
+
+        <form action="{{ url_for('search') }}" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="lookup">
+                        <input id="lookup" autocomplete="on" autofocus class="form-control" placeholder="Search for books" name="lookup" type="text" required/>
+                    </label>
+                </div>
+                <div class="form-group checkbox-info">
+                    <input id="showImages" type="checkbox" class="form-control" value="1" name="showImages">
+                    <label for="showImages" class="checkbox-custom-label">Show book images</label>
+                </div>
+
+                <div class="box">
+                    <a class="button-popup" href="#popup1"><img src="../static/images/info.png" alt="info" class="info-png"></a>
+                </div>
+
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <h2>Heads Up!</h2>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                            Choosing to show book images will take a few moments.
+                            If you're in a rush, consider leaving this box unchecked.
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <br>
+            <button class="btn search-btn" type="submit">Search</button>
+        </form>
+    </div>
+
+{% endblock %}

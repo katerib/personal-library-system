@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <div class="stars">
+         <div class="twinkling">
+                <div class="card-home">
+                    <div class="card-header">
+                        <h2 id="header-text" class="text-center">Library</h2>
+                    </div>
+                </div>
+            </div>
+         </div>
+    <div class="container mt-4">
+        {% for item in data %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ item.title }}</h5>
+                            <span><strong>by {{ item.author }}</strong></span>
+                            <span><i>Average Rating: {{ item.rating }}</i></span>
+                            <span>({{ item.pages }} pages)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="text-center">
+            {% if page == 0 or page == 1 %}
+                <a href="/library?page=1" class="btn btn-outline-dark mt-2 mb-2"><<</a>
+                <a href="/library?page=1" class="btn btn-outline-dark mt-2 mb-2"><</a>
+                <a href="/library?page={{ page }}" class="btn btn-outline-dark mt-2 mb-2"><strong>1</strong></a>
+                <a href="/library?page=2" class="btn btn-outline-dark mt-2 mb-2">></a>
+                <a href="/library?page={{ totalPages }}" class="btn btn-outline-dark mt-2 mb-2">>></a>
+                <p><i class="mt-0">page 1 of {{ totalPages }}</i></p>
+            {% elif page == 2 %}
+                <a href="/library?page=1" class="btn btn-outline-dark mt-2 mb-2"><<</a>
+                <a href="/library?page={{ page-1 }}" class="btn btn-outline-dark mt-2 mb-2"><</a>
+                <a href="/library?page={{ page }}" class="btn btn-outline-dark mt-2 mb-2"><strong>{{ page }}</strong></a>
+                <a href="/library?page={{ 1+page }}" class="btn btn-outline-dark mt-2 mb-2">></a>
+                <a href="/library?page={{ totalPages }}" class="btn btn-outline-dark mt-2 mb-2">>></a>
+                <p><i class="mt-0">page {{ page }} of {{ totalPages }}</i></p>
+            {% else %}
+                <a href="/library?page=1" class="btn btn-outline-dark mt-2 mb-2"><<</a>
+                <a href="/library?page={{ page-1 }}" class="btn btn-outline-dark mt-2 mb-2"><</a>
+                <a href="/library?page={{ page }}" class="btn btn-outline-dark mt-2 mb-2"><strong>{{ page }}</strong></a>
+                <a href="/library?page={{ 1+page }}" class="btn btn-outline-dark mt-2 mb-2">></a>
+                <a href="/library?page={{ totalPages }}" class="btn btn-outline-dark mt-2 mb-2">>></a>
+                <p><i class="mt-0">page {{ page }} of {{ totalPages }}</i></p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

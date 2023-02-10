@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.volumeInfo.title }}{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <body style="background-color: black;">
+        <div class="stars">
+            <div class="twinkling">
+                <div class="stars">
+                     <div class="twinkling">
+                            <div class="card-home">
+                                <div class="card-header">
+                                    <h2 id="header-text" class="text-center">Viewing Book Details for: {{ book.volumeInfo.title }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+
+                <div class="container book-details" id="info">
+                        <img src="https://books.google.com/books/content?id={{ book.id }}&printsec=frontcover&img=1&zoom=5&fife=h300&edge=curl&source=gbs_api" alt="" id="tn"/>
+
+                        <div id="details-title">{{ book.volumeInfo.title }}</div>
+                        <span>
+                            <div class="book-info" id="details-auth">
+                                <strong>by {{ book.volumeInfo.authors|join(', ') }}</strong>
+                            </div>
+                        </span>
+                        <br>
+
+                        <div class="nowrap book-info">
+                            <div class="rating">Average Rating:
+                                {% if book.volumeInfo.averageRating %}
+                                    {% for val in range(5) %}
+                                        {% if val >= book.volumeInfo.averageRating %}
+                                            <div id="blank-star">★</div>
+                                        {% else %}
+                                            <div id="fill-star">★</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {{ book.volumeInfo.averageRating|round|int }}.0
+                                    <small>({{ book.volumeInfo.ratingsCount }} ratings)</small>
+                                {% else %}
+                                    Unspecified
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if book.volumeInfo.pageCount %}
+                            <p class="book-info">Page Count: {{ book.volumeInfo.pageCount }} pages</p>
+                        {% else %}
+                            <p class="book-info">Page Count: Unspecified</p>
+                        {% endif %}
+                        <br>
+                        <h5 class="description book-info">Description</h5>
+                        <div class="book-info">
+                            <p>{{ book.volumeInfo.description.replace("<br>"," ").replace("<b>","").replace("</b>","").replace("</br>","").replace("<i>","").replace("</i>","").replace("<p>","").replace("</p>","") }}</p>
+                            <br>
+                            <p>ISBN13: {{ book.volumeInfo.industryIdentifiers[0].identifier }}</p>
+                            <p>ISBN10: {{ book.volumeInfo.industryIdentifiers[1].identifier }}</p>
+                            <p>Publisher: {{ book.volumeInfo.publisher }}</p>
+                            <p>Published Date: {{ book.volumeInfo.publishedDate }}</p>
+                        </div>
+                        {% if book.volumeInfo.categories %}
+                            {% if book.volumeInfo.categories|length > 1 %}
+                                <p class="book-info">Categories: {{ book.volumeInfo.categories|join(' ‒ ') }}</p>
+                            {% else %}
+                                <p class="book-info">Category: {{ book.volumeInfo.categories[0] }}</p>
+                            {% endif %}
+                        {% else %}
+                            <p class="book-info">Category: Unspecified</p>
+                        {% endif %}
+                        <br>
+                        <p class="book-info">Interested in reading {{ book.volumeInfo.title }}? Preview the book <a href="https://books.google.com/books?id={{ book.id }}&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false" target="">here</a>!</p>
+
+                <button class="back-to-search" onclick="history.back()">Back to Search Results</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}My Shelf{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    {% if 'query_edit' in request.url %}
+    <div class="stars">
+         <div class="twinkling">
+                <div class="card-home">
+                    <div class="card-header">
+                        <h2 id="header-text" class="text-center">Edit a Book</h2>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <div style='margin-left: 100px; width: 45%;'>
+            <div class="alert alert-info-edit" role="alert">
+            <strong>EDIT</strong> your book entry here
+        </div>
+
+
+        {% for eResult in eResults %}
+
+        <form action="edit" method="POST">
+            <p>Book Title: <input class="form-control update" type="text" name="title" style='width: 100%;' value='{{eResult["title"]}}'/></p>
+            <p>Author: <input class="form-control update" type="text" name="author" style='width: 100%;' value='{{eResult["author"]}}' /></p>
+            <p>Your Rating: <input class="form-control update" type="text" name="rating" style='width: 100%;' value='{{eResult["rating"]}}' /></p>
+            <p>Length (Pages): <input class="form-control update" type="text" name="pages" style='width: 100%;' value='{{eResult["pages"]}}' /></p>
+            <input type ="hidden" name="old_title" value='{{eResult["title"]}}' />
+            <input type ="hidden" name="old_author" value='{{eResult["author"]}}' />
+
+        {% endfor %}
+
+        <br>
+        <div class="btn-toolbar edit-book-tools">
+            <p><input class="btn-update" type="submit" value="Update Data" /></p>
+            <div class="btn-group mr-2 cancel">
+                <a href="/shelf">Cancel</a>
+            </div>
+        </div>
+        </form>
+        </div>
+
+    {% elif 'create' in request.url %}
+        <div class="stars">
+             <div class="twinkling">
+                    <div class="card-home">
+                        <div class="card-header">
+                            <h2 id="header-text" class="text-center">Add a Book to My Shelf</h2>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        <div class="add-block" style='margin-top: 10px; margin-left: 100px; width: 45%;'>
+            <div class="alert alert-empty" role="alert">
+                <strong>ADD A BOOK!</strong> Input book info and click 'Save' to add to My Shelf.
+            </div>
+
+            <form id="add-form" action="insert" method="POST">
+                <div class="row add-book">
+                    <div class="column add-book">
+                        <p>Book Title</p>
+                    </div>
+                    <div class="column add-book">
+                        <label for="title">
+                            <input class="form-control" type="text" name="title" placeholder="Enter book title"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row add-book">
+                    <div class="column add-book">
+                        <p>Author</p>
+                    </div>
+                    <div class="column add-book">
+                        <label for="author">
+                            <input class="form-control" type="text" name="author" placeholder="Enter author name"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row add-book">
+                    <div class="column add-book">
+                        <p>Your Rating</p>
+                    </div>
+                    <div class="column add-book">
+                        <label for="rating">
+                            <input class="form-control" type="text" name="rating" placeholder="Enter a number between 1-5"/>
+                        </label>
+                    </div>
+                </div>
+                <div class="row add-book">
+                    <div class="column add-book">
+                        <p>Length (Pages)</p>
+                    </div>
+                    <div class="column add-book">
+                        <label for="pages">
+                            <input class="form-control" type="text" name="pages" placeholder="Enter number of pages"/>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <div class="btn-toolbar add-book-tools">
+                    <div class="btn-group mr-2 save">
+                        <p><input class="btn" type="submit" value="Save"/></p>
+                    </div>
+                    <div class="btn-group mr-2 cancel">
+                        <a href="/shelf">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    {% elif results | length < 1 %}
+        <div class="stars">
+             <div class="twinkling">
+                    <div class="card-home">
+                        <div class="card-header">
+                            <h2 id="header-text" class="text-center">My Shelf</h2>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        <div class="alert-box">
+            <div class="alert" role="alert">
+                <strong>Heads up: your shelf is empty!</strong>
+                <p>Get started by <a href="/create">adding a book</a> now!</p>
+            </div>
+        </div>
+
+        <blockquote class="blockquote text-center">
+          <p class="mb-0">"A mind needs books as a sword needs a whetstone, if it is to keep its edge."</p>
+          <footer class="blockquote-footer">Tyrion Lannister in
+              <cite title="Source Title">
+                  A Song of Ice and Fire
+              </cite>
+              <span> by George R.R. Martin</span>
+          </footer>
+        </blockquote>
+
+    {% else %}
+        <div class="stars">
+             <div class="twinkling">
+                    <div class="card-home">
+                        <div class="card-header">
+                            <h2 id="header-text" class="text-center">My Shelf</h2>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <table class="table table-hover" id="shelf-table" style="margin-left: 100px; margin-right: 100px; width:80%">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Rating</th>
+                    <th>Pages</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+
+        {%  for result in results %}
+            <tr>
+                <td>{{ result['title'] }}</td>
+                <td>{{ result['author'] }}</td>
+                <td>{{ result['rating'] }}</td>
+                <td>{{ result['pages'] }}</td>
+                <td id="table-btn"><a href="{{ url_for('sql_edit_link', eTitle=result['title'], eAuthor=result['author'])  }}"><i class="fas fa-edit"></i></a></td>
+                <td id="table-btn"><a href="{{ url_for('sql_data_delete', title=result['title'], author=result['author'])  }}"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

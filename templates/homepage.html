@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Homepage{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <body style="background-color: black;">
+        <div class="stars">
+            <div class="twinkling">
+                <div class="stars">
+                    <div class="twinkling">
+                        <h1 class="display-4 home-text" id="header-text">BookNook</h1>
+                        <div class="container">
+                            <p class="lead home-lead">Welcome to BookNook, the virtual bookshelf that keeps track of your favorite reads.</p>
+                        </div>
+                    </div>
+                </div>
+{#                <div class="stars">#}
+{#                     <div class="twinkling">#}
+{#                        <div class="card-home">#}
+{#                            <div class="card-header">#}
+{#                                <h2 id="header-text" class="text-center">Welcome to BookNook</h2>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                 </div>#}
+            <p class="guide">Not sure what to do first? Here are some great places to start:</p>
+            <div class="card-deck home-deck">
+                <div class="card home-card">
+                    <a href="/create">
+                        <img class="card-img-top" src="../static/images/shelves.jpg" alt="Card image cap">
+                    </a>
+                    <div class="card-body home-card-body stars">
+                        <div class="card-body ">
+                            <h5 class="card-title home-title"><a href="/create">Add to Shelf</a></h5>
+                            <p class="card-text">Get started by adding a book to My Shelf now.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card home-card">
+                    <a href="/search">
+                        <img class="card-img-top" src="../static/images/book.jpg" alt="Card image cap">
+                    </a>
+                    <div class="card-body home-card-body stars">
+                        <div class="card-body ">
+                            <h5 class="card-title home-title"><a href="/search">Find A Book</a></h5>
+                            <p class="card-text">Search for a book or author to view more info about that book.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card home-card">
+                    <a href="/tutorial">
+                        <img class="card-img-top" src="../static/images/typewriter.jpg" alt="Card image cap">
+                    </a>
+                    <div class="card-body home-card-body stars">
+                        <div class="card-body ">
+                            <h5 class="card-title home-title"><a href="/tutorial">Learn</a></h5>
+                            <p class="card-text">Read the site tutorial to learn how to navigate the site.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            </div>
+        </div>
+    </body>
+{% endblock %}

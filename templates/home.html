@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <div class="stars">
+         <div class="twinkling">
+                <div class="card-home">
+                    <div class="card-header">
+                        <h2 id="header-text" class="text-center">Welcome to the Homepage</h2>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+    <h6 id="center"> Not sure what to do first? Here are some great places to start: </h6>
+
+    <div class="home-page">
+        <div class="row">
+          <div class="column" id="column1">
+              <h2><a href="/shelf">My Shelf</a></h2>
+            <p>Check out the books you've added to your shelf.</p>
+          </div>
+          <div class="column" id="column2">
+            <h2><a href="/create">Add A Book</a></h2>
+            <p>Build your shelf by providing some information about a book you've read.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column" id="column2">
+            <h2><a href="/import">Import Books</a></h2>
+            <p>Choose a file to import some books to your shelf.</p>
+          </div>
+          <div class="column" id="column1">
+            <h2><a href="/tutorial">Tutorial</a></h2>
+            <p>Learn about all the features the site has to offer!</p>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

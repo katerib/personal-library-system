@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Import CSV{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <div class="stars">
+         <div class="twinkling">
+                <div class="card-home">
+                    <div class="card-header">
+                        <h2 id="header-text" class="text-center">Upload Book Data</h2>
+                    </div>
+                </div>
+            </div>
+         </div>
+    <h6>Import a CSV file to add book data to My Shelf. For best results, make sure the file is formatted according to the specifications provided on the <a href="/tutorial">Tutorial</a> page.</h6>
+    <div class="import mt-4">
+        <form method="POST" action="" enctype="multipart/form-data">
+            <div class="upload-box">
+                <div class="card-body">
+                    <p><input class="choose-file" type="file" name="file" accept=".text/csv, .csv"</p>
+                </div>
+                <div class="upload-btn mt-4">
+                    <p><input class="upload-csv" type="submit" value="Upload"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

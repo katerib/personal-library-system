@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Tutorial{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <div class="stars">
+         <div class="twinkling">
+            <h1 class="display-4" id="header-text">How to Use BookNook</h1>
+            <div class="jumbotron jumbotron-fluid stars twinkling">
+                <div class="container">
+                    <p class="lead">Welcome to BookNook, a place where you can track and rate the books you've read by adding them to your shelf.</p>
+                    <p class="lead">Ready to get started? Read below for a step-by-step guide to using the site.</p>
+                </div>
+            </div>
+         </div>
+    </div>
+
+
+    <div class="tutorial">
+        <h2>Site Features</h2>
+        <p>Let's take a moment to understand the features this site offers. A quick glance at the navigation bar at the top of the page gives us a good idea of what the site has to offer. We see: "My Shelf", "Library", "Search", and "Tutorial" in the nav bar.</p>
+        <p><strong>MY SHELF</strong> stores information about the books you have read. You can add a book to My Shelf to start building your shelf. All the books you have added to My Shelf will appear on this page. If you haven't added any books yet, this page will be empty. Hover over "My Shelf" in the NavBar to explore more options.</p>
+        <ul>
+            <li><strong>Add to Shelf</strong> allows you to add a book to My Shelf by manually importing the book's information. To start, you will need to enter the book title and author. Then you will need to enter a rating for the book and input the length of the book. All of this information will help us track the books on your shelf.</li>
+            <li><strong>Import</strong> allows you to add a book to My Shelf by uploading a CSV file. If you have a lot of books to add to My Shelf, it is recommended to import your data by uploading a CSV file. When formatting the CSV file, make sure the first row contains the headers: 'title', 'author', 'rating', 'pages'. Once your CSV file contains a header and some book information, it's ready to import to My Shelf!</li>
+{#            <li><strong>Export</strong> allows you to save a file containing all the books in My Shelf. Your file will download as a CSV file and will only contain the books currently stored in your shelf. This is a great option if you want to back up your data or export the CSV for editing before resubmitting it to the site to fill your shelf.</li>#}
+        </ul>
+
+        <p><strong>LIBRARY</strong> contains over 50,000 book entries. Scrolling through the library is a great option if you're struggling to decide on what book to read next or having trouble remembering the books you've already read. Library books contain all the same information required when you add a book to My Shelf, so the information should look familiar. Since there are over 50,000 books, each page only displays five books at a time for simplicity.</p>
+
+        <p><strong>SEARCH</strong> allows you to search for Library books by title or author. A search result displays all related books currently saved in the Library. If you're looking to add a book to My Shelf but don't have all the necessary information, the search feature is a great way to see if it is stored in the Library. Once you see your search results, simply select the book from the list of results and click "Create Book Entry". This will open up the information in the same display as Add to Shelf. If you're looking for a book that isn't stored in the Library, no worries - just add it to My Shelf using one of the ways explained above.</p>
+        <p style="text-align:center;"><img src="/static/images/divider.png" height="50 px"></p>
+
+        <h2>Get Started</h2>
+        <p><strong>Ready to get started?</strong> First, you'll want to add a book to My Shelf. You have several options: add manually, add via CSV import, add from Library search. If you're not sure which one to try first, adding a book manually is a great place to start. This will help you get familiar with the website. In the NavBar, click "My Shelf" and then click "Add to Shelf" from the dropdown options. Or, if you have a lot of books to add, click "Import" instead.</p>
+        <p><strong>Using the Site:</strong> Once you've added some books to My Shelf, click "My Shelf" and "View Shelf" to view them. All of your books currently stored on My Shelf will appear here in one list.</p>
+        <p><strong>Made a mistake?</strong> No worries. Editing and deleting book entries is easy! Navigate to "View Shelf" and find the entry you wish to change. You will see two icons to the right of your book information: one allows you to edit your entry and the other allows you to delete it. Clicking "Delete" permanently removes the book entry from My Shelf, so click carefully!</p>
+        <br>
+        <p style="text-align:center;"><img src="/static/images/divider.png" height="50 px"></p>
+        <div style="text-align: center" class="tutorial-link">
+            <h5>Now that you know how to use the site, it's time to build your shelf!</h5>
+            <h5>Head over to <a href="/create">Add a Book</a> to start entering some book information.</h5>
+        </div>
+{#        <p style="text-align:center;"><img src="/static/images/book.png" height="50 px"></p>#}
+    </div>
+
+{% endblock %}

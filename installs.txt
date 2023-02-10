@@ -1,0 +1,7 @@
+# py -m pip install [X]
+pip install pandas
+pip install Flask
+pip install -U Flask-SQLAlchemy
+pip install mysql-connector-python
+pip install python-dotenv
+pip install requests

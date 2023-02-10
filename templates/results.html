@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+{% block head %}
+    {{  super() }}
+{% endblock %}
+{% block content %}
+    <div class="stars">
+         <div class="twinkling">
+                <div class="card-home">
+                    <div class="card-header">
+                        <h2 id="header-text" class="text-center">Search Results</h2>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+    <div class="container mt-4">
+        {% for book in bookResults["items"] %}
+            <div class="card mt-4 book-result">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ book.volumeInfo.title }}</h5>
+                            <span><strong>by {{ book.volumeInfo.authors|join(', ') }}</strong></span>
+                            {% for i in book.searchInfo %}
+                                <p>{{ book.searchInfo[i].replace("&#39;", "'").replace("&quot;", "") }}</p>
+                            {% endfor %}
+                            <br>
+                            <a href="{{ url_for('details', book_id=book.id) }}">View More Details</a>
+                        </div>
+                        <div class="image">
+                            {% if thumbnails %}
+                                {% if thumbnails|length != 0 and (thumbnails[loop.index0]!="invalid") %}
+                                    <img src="{{ thumbnails[loop.index0] }}" alt=""  id="tn"/>
+                                {% elif thumbnails[loop.index0]!="NULL" %}
+                                    <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="" id="tn"/>
+                                {% endif %}
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
