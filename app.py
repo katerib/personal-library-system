@@ -3,6 +3,7 @@ import os
 import requests
 import zmq
 from dotenv import load_dotenv
+from key import return_key
 from flask import Flask, render_template, request, redirect, url_for
 
 load_dotenv()
@@ -13,7 +14,7 @@ BOOK_KEY = os.environ.get("api-key")
 
 app = Flask(__name__, instance_relative_config=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = b'_5#y2L"F4Q8z23r]/'
+app.secret_key = return_key()
 
 context = zmq.Context()
 print("Connecting to microservice...")
