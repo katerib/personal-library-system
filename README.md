@@ -49,5 +49,5 @@ View [installs.txt](https://github.com/katerib/personal-library-system/blob/mast
 
 ## Demo
 
-Images of the site and its features can be found in the Demo folder. 
+Images of the site and its features can be found in the [Demo folder](https://github.com/katerib/personal-library-system/tree/master/demo). 
 
