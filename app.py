@@ -1,6 +1,9 @@
 import csv
 import os
 
+import secrets
+from pathlib import Path
+
 import requests
 import zmq
 from dotenv import load_dotenv
@@ -14,7 +17,15 @@ BOOK_KEY = os.environ.get("api-key")
 
 app = Flask(__name__, instance_relative_config=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config.from_pyfile('key.py')
+
+SECRET_FILE_PATH = Path(".flask_secret")                    # store secret_key in hidden file
+try:
+    with SECRET_FILE_PATH.open("r") as secret_file:
+        app.secret_key = secret_file.read()
+except FileNotFoundError:
+    with SECRET_FILE_PATH.open("w") as secret_file:         # create cryptographically secure code
+        app.secret_key = secrets.token_hex(32)
+        secret_file.write(app.secret_key)
 
 context = zmq.Context()
 print("Connecting to microservice...")
@@ -24,7 +35,17 @@ socket.connect("tcp://localhost:5555")
 
 @app.route('/')
 def root():
+    return render_template('landing.html')
+
+
+@app.route('/homepage')
+def home():
     return render_template('homepage.html')
+
+
+@app.route('/redirect')
+def redirect_to_home():
+    return redirect(url_for('homepage'))
 
 
 def get_all_data():
@@ -187,7 +208,7 @@ def get_isbn_list(results):
     :return:
     """
     results_isbn = []
-    for item in results["items"]:       # only append isbn13
+    for item in results["items"]:  # only append isbn13
         if item["volumeInfo"]["industryIdentifiers"][0]["type"] != "OTHER":
             results_isbn.append(item["volumeInfo"]["industryIdentifiers"][0]["identifier"])
         else:

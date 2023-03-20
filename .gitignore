@@ -3,3 +3,4 @@
 .env
 /testing-files/
 key.py
+.flask_secret
