@@ -18,7 +18,7 @@ The app connects to the server (microservice.py) and sends the ISBN as a message
 * CSS
 * Jinja2
 * ZeroMQ (microservice architecture)
-* SQLAlchemy (database persistence)
+* SQLite (database persistence)
 
 ## Usage
 
