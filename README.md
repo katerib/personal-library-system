@@ -28,7 +28,7 @@ In another terminal within a virtual environment, start the microservice with `p
 
 ### Requirements
 
-View [installs.txt](https://github.com/katerib/personal-library-system/blob/master/installs.txt) for all necessary packages.
+View [requirements.txt](https://github.com/katerib/personal-library-system/blob/master/requirements.txt) for all necessary packages.
 
 ## Features
 
